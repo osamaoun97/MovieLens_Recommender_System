@@ -11,6 +11,8 @@ users = list(range(1,944))
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+server = app.server
+
 app.layout = html.Div([
     html.H1("Recommendation App"),
     html.Div([
@@ -44,6 +46,4 @@ def update_recommendations(n_clicks, user_id, num_items):
         recommended_items = recommender.get_recommendations(str(user_id))[:num_items]
         return html.Ul([html.Li(item) for item in recommended_items])
 
-
-server = app.server
-app.run()
+app.run(port="8000")
