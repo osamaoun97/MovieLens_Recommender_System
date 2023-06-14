@@ -1,3 +1,3 @@
-# MovieLens Recommender System
+# Training a MovieLens Recommender System
 
-This is an underdevelopment repo
+This is an underdevelopment repo by Osama Fayez
