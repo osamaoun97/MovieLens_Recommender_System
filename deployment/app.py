@@ -44,5 +44,6 @@ def update_recommendations(n_clicks, user_id, num_items):
         recommended_items = recommender.get_recommendations(str(user_id))[:num_items]
         return html.Ul([html.Li(item) for item in recommended_items])
 
-if __name__ == '__main__':
-    app.run_server(debug=True)
+
+server = app.server
+app.run()
