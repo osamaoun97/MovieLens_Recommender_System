@@ -4,12 +4,15 @@ import dash_bootstrap_components as dbc
 from dash import html
 from dash.dependencies import Input, Output
 from utils.model import Recommender
+import deployment.themes as themes
 
+print("loading model")
 recommender = Recommender()
+print("model loaded")
 
 users = list(range(1,944))
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[themes.SKETCHY])
 
 server = app.server
 
@@ -46,4 +49,4 @@ def update_recommendations(n_clicks, user_id, num_items):
         recommended_items = recommender.get_recommendations(str(user_id))[:num_items]
         return html.Ul([html.Li(item) for item in recommended_items])
 
-app.run(port="8000")
+app.run()
