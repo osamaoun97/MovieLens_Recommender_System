@@ -1,8 +1,8 @@
 import tensorflow as tf
 
-class Recommender:
+class UserRecommender:
     def __init__(self):
-        self.model = tf.keras.models.load_model('model')
+        self.model = tf.keras.models.load_model('user_model')
     
     def get_recommendations(self, user_id):
         user_input = tf.constant([user_id])
@@ -12,7 +12,7 @@ class Recommender:
 if __name__ == '__main__':
     # Path to the pre-trained model
     # Create an instance of the Recommender class
-    rec = Recommender()
+    rec = UserRecommender()
     # User ID for which to get recommendations
     user_id = "1"
     # Get recommendations
