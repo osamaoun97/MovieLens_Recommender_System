@@ -4,13 +4,15 @@ import dash_bootstrap_components as dbc
 from dash import html
 from dash.dependencies import Input, Output
 from utils.model import Recommender
+import deployment.themes as themes
+
 print("loading model")
 recommender = Recommender()
 print("model loaded")
 
 users = list(range(1,944))
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[themes.SKETCHY])
 
 server = app.server
 
