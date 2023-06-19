@@ -1,2 +1,2 @@
 dash==2.8.1
-gunicorn
+gunicorn==19.7.1
