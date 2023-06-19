@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 class MoviesSimilarity:
     def __init__(self):
@@ -13,16 +14,20 @@ class MoviesSimilarity:
     def get_most_similar_items(self, item_title, similarity_type='cosine', top_n=5):
         similarity_matrix = self.load_similarity_matrix(similarity_type)
         # Find the index of the item in the data
-        item_index = self.movies.loc[self.movies['movie_title'] == item_title, "movieId"].values[0]
-        
+        movie_id = self.movies.loc[self.movies['movie_title'] == item_title, "movieId"].values[0]
+
+        movies_ids = similarity_matrix.index.to_list()
+
         # Get the similarity scores for the item
-        item_similarities = similarity_matrix[similarity_matrix.index == item_index].values[0]
+        movie_similarities = similarity_matrix[similarity_matrix.index == movie_id]
 
         # Sort the similarities in descending order and get the indices of the most similar items
-        most_similar_indices = item_similarities.argsort()[::-1][1:top_n + 1]
+        most_similar_indices = movie_similarities.values[0].argsort()[::-1][1:top_n + 1]
 
+        # Get the movie IDs associated with the highest similarity values
+        most_similar_movie_ids = [movies_ids[i] for i in most_similar_indices]
         # Get the titles of the most similar items
-        most_similar_items = self.movies.iloc[most_similar_indices, :]["movie_title"].tolist()
+        most_similar_items = [self.movies[self.movies["movieId"] == i]["movie_title"].values[0] for i in most_similar_movie_ids]
         
         return most_similar_items
 
@@ -30,7 +35,7 @@ if __name__ == "__main__":
     similarity = MoviesSimilarity()
 
     # Specify the movie name for which you want to find similar items
-    movie_name = "Heat (1995)"
+    movie_name = "Toy Story (1995)"
     # Get similar items based on different similarity measures
     similar_items_cosine = similarity.get_most_similar_items(movie_name, similarity_type='cosine', top_n=10)
     similar_items_euclidean = similarity.get_most_similar_items(movie_name, similarity_type='euclidean', top_n=10)
