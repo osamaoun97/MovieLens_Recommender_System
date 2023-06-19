@@ -3,11 +3,11 @@ from dash import  dcc
 import dash_bootstrap_components as dbc
 from dash import html
 from dash.dependencies import Input, Output
-from utils.model import Recommender
+from utils.user_rec import UserRecommender
 import deployment.themes as themes
 
 print("loading model")
-recommender = Recommender()
+UserRecommender = UserRecommender()
 print("model loaded")
 
 users = list(range(1,944))
@@ -46,7 +46,7 @@ app.layout = html.Div([
 )
 def update_recommendations(n_clicks, user_id, num_items):
     
-        recommended_items = recommender.get_recommendations(str(user_id))[:num_items]
+        recommended_items = UserRecommender.get_recommendations(str(user_id))[:num_items]
         return html.Ul([html.Li(item) for item in recommended_items])
 
 app.run()
