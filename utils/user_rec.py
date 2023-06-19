@@ -16,16 +16,16 @@ class UserRecommender:
         return user_recommendations
 
 if __name__ == '__main__':
-    # recommender = UserRecommender()
-    # recommendations = []
-    # for user_id in range(1, 944):
-    #     user_recommendations = recommender.get_recommendations(str(user_id))
-    #     recommendations.append(user_recommendations)
-
-    # df = pd.DataFrame(recommendations, index=range(1, 944))
-    # df.to_csv('data/user_recommendations.csv', index_label='User ID')
-    
-    user_id = 123  # Example user ID
     recommender = UserRecommender()
-    recommendations = recommender.get_recommendations(str(user_id))
-    print("recommendations:", recommendations)
+    recommendations = []
+    for user_id in range(1, 944):
+        user_recommendations = recommender.get_recommendations(str(user_id))
+        recommendations.append(user_recommendations)
+
+    df = pd.DataFrame(recommendations, index=range(1, 944))
+    df.to_csv('data/user_recommendations.csv', index_label='User ID')
+    
+    # user_id = 123  # Example user ID
+    # recommender = UserRecommender()
+    # recommendations = recommender.get_recommendations(str(user_id))
+    # print("recommendations:", recommendations)
