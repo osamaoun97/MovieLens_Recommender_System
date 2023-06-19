@@ -1,4 +1,4 @@
 install:
 	pip install -r requirements.txt
 deploy:
-	python -m deployment.app
+	python -m deployment.main
