@@ -32,7 +32,9 @@ server = app.server
 tab1_content = dbc.Card(
     dbc.CardBody(
         [
+            html.Br(),
             html.H5("Welcome to our recommender app! 👋 if you are a new users, here are some recommendations for you ✨:", className="card-text"),
+            html.Br(),
             html.Br(),
             dbc.Row([
                 dbc.Col(dbc.Card([
@@ -43,7 +45,9 @@ tab1_content = dbc.Card(
                     html.H6("Popular movies 📈", style={'font-size': '20px', "display": "flex", "justify-content": "center", "align-items": "center", "color": "#66b2b2"}),
                     html.Ul([html.Li(item) for item in most_rated],style={'font-size': '14px'})
             ]))
-            ])
+            ]),
+            html.Br(),
+            html.Br(),
         ]
     ),
     className="mt-3",
@@ -252,5 +256,5 @@ def update_movies_sim(n_clicks, movie_name, similarity_type):
     else:
         return html.H6("please select the required options")
 
-if __name__ == "__main__":
-    app.run(debug=False)
+
+app.run()
