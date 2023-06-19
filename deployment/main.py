@@ -38,12 +38,12 @@ tab1_content = dbc.Card(
             html.Br(),
             dbc.Row([
                 dbc.Col(dbc.Card([
-                    html.H6("Higest rated movies 🔝", style={'font-size': '20px', "display": "flex", "justify-content": "center", "align-items": "center", "color": "#66b2b2"}),
-                    html.Ul([html.Li(item) for item in highest_rated],style={'font-size': '14px'})
+                    html.H6("Higest rated movies 🔝", style={'font-size': '25px', "display": "flex", "justify-content": "center", "align-items": "center", "color": "#66b2b2"}),
+                    html.Ul([html.P(f"{i}. {item}") for i, item in enumerate(highest_rated, start=1)],style={'font-size': '15px'})
             ])),
                 dbc.Col(dbc.Card([
-                    html.H6("Popular movies 📈", style={'font-size': '20px', "display": "flex", "justify-content": "center", "align-items": "center", "color": "#66b2b2"}),
-                    html.Ul([html.Li(item) for item in most_rated],style={'font-size': '14px'})
+                    html.H6("Most Popular movies 📈", style={'font-size': '25px', "display": "flex", "justify-content": "center", "align-items": "center", "color": "#66b2b2"}),
+                    html.Ul([html.P(f"{i}. {item}") for i, item in enumerate(most_rated, start=1)],style={'font-size': '15px'})
             ]))
             ]),
             html.Br(),
@@ -83,8 +83,8 @@ tab2_content = dbc.Card(
         html.Br(),
         dbc.Row([
             dbc.Col(dbc.Card([
-            html.H6("Recommended movies ", style={'font-size': '20px', "display": "flex", "justify-content": "center", "align-items": "center", "color": "#66b2b2"}),
-            html.Ul([html.Li(item) for item in highest_rated],style={'font-size': '14px'}, id="users-movies-rec")
+            html.H6("Recommended movies ", style={'font-size': '25px', "display": "flex", "justify-content": "center", "align-items": "center", "color": "#66b2b2"}),
+            html.Ul(style={'font-size': '15px'}, id="users-movies-rec")
             ])),
             ]),
         ]
@@ -120,8 +120,8 @@ tab3_content = dbc.Card(
         html.Br(),
         dbc.Row([
             dbc.Col(dbc.Card([
-            html.H6("Top similar movies", style={'font-size': '20px', "display": "flex", "justify-content": "center", "align-items": "center", "color": "#66b2b2"}),
-            html.Ul([html.Li(item) for item in highest_rated],style={'font-size': '14px'}, id="movies-sim-rec")
+            html.H6("Top similar movies", style={'font-size': '25px', "display": "flex", "justify-content": "center", "align-items": "center", "color": "#66b2b2"}),
+            html.Ul(style={'font-size': '15px'}, id="movies-sim-rec")
             ])),
             ]),
         ]
@@ -133,41 +133,41 @@ PANS = dbc.Row([
     dbc.Col([
         dbc.Card(
         [
-            dbc.CardImg(src="/assets/Users.png",style={'height':'2%','width':'25%','padding-top':'5px'},className = 'align-self-center', top=True),
+            dbc.CardImg(src="/assets/Users.png",style={'height':'2%','width':'25%','padding-top':'3px'},className = 'align-self-center', top=True),
             dbc.CardBody([
-                html.H6("Number of Users", className="card-text",style={'font-size': '20px', "font-weight": "bold"}),
-                html.H1("943", style={'font-size': '30px', "font-weight": "bold"})
+                html.H6("Number of Users", className="card-text",style={'font-size': '15px', "font-weight": "bold"}),
+                html.H1("943", style={'font-size': '20px', "font-weight": "bold"})
             ])
         ],
-        style={"width": "26rem",'box-shadow': '0 4px 8px 0 rgba(0,0,0,0.2)','border-radius': '5px'},
+        style={"width": "26rem",'box-shadow': '0 4px 4px 0 rgba(0,0,0,0.2)','border-radius': '5px'},
     )
-    ],width=4, style={"height": "220px", "background-color": "transparent", 'text-align':'center'}),
+    ],width=4, style={"height": "170px", "background-color": "transparent", 'text-align':'center'}),
 
     dbc.Col([
         dbc.Card(
         [
-            dbc.CardImg(src="/assets/MovieS.png",style={'height':'2%','width':'25%','padding-top':'5px'},className = 'align-self-center', top=True),
+            dbc.CardImg(src="/assets/MovieS.png",style={'height':'2%','width':'25%','padding-top':'3px'},className = 'align-self-center', top=True),
             dbc.CardBody([
-                html.H6("Number of Movies", className="card-text",style={'font-size': '20px', "font-weight": "bold"}),
-                html.H1("9743", style={'font-size': '30px', "font-weight": "bold"})
+                html.H6("Number of Movies", className="card-text",style={'font-size': '15px', "font-weight": "bold"}),
+                html.H1("9743", style={'font-size': '20px', "font-weight": "bold"})
             ])
         ],
-        style={"width": "26rem",'box-shadow': '0 4px 8px 0 rgba(0,0,0,0.2)','border-radius': '5px'},
+        style={"width": "26rem",'box-shadow': '0 4px 4px 0 rgba(0,0,0,0.2)','border-radius': '5px'},
     )
-    ],width=4, style={"height": "220px", "background-color": "transparent", 'text-align':'center'}),
+    ],width=4, style={"height": "170px", "background-color": "transparent", 'text-align':'center'}),
 
         dbc.Col([
         dbc.Card(
         [
-            dbc.CardImg(src="/assets/Ratings.png",style={'height':'2%','width':'25%','padding-top':'5px'},className = 'align-self-center', top=True),
+            dbc.CardImg(src="/assets/Ratings.png",style={'height':'2%','width':'25%','padding-top':'3px'},className = 'align-self-center', top=True),
             dbc.CardBody([
-                html.H6("Number of Ratings", className="card-text",style={'font-size': '20px', "font-weight": "bold"}),
-                html.H1('100837', style={'font-size': '30px', "font-weight": "bold"})
+                html.H6("Number of Ratings", className="card-text",style={'font-size': '15px', "font-weight": "bold"}),
+                html.H1('100837', style={'font-size': '20px', "font-weight": "bold"})
             ])
         ],
-        style={"width": "26rem",'box-shadow': '0 4px 8px 0 rgba(0,0,0,0.2)','border-radius': '5px'},
+        style={"width": "26rem",'box-shadow': '0 4px 4px 0 rgba(0,0,0,0.2)','border-radius': '5px'},
     )
-    ],width=4, style={"height": "220px", "background-color": "transparent", 'text-align':'center'}),
+    ],width=4, style={"height": "170px", "background-color": "transparent", 'text-align':'center'}),
 ])
 
 GRAPHS = tab6_content = dbc.Card(
@@ -177,7 +177,7 @@ GRAPHS = tab6_content = dbc.Card(
                     width=6),
             dbc.Col(dcc.Graph(figure=pg.count_by_genre()),
                     width=6)
-        ])
+        ],style={"height": "380px"})
     ]),
     className="mt-3",
 )
@@ -234,8 +234,12 @@ app.layout = dbc.Container([html.Br(),
 )
 def update_recommendations(n_clicks, user_id, num_items):
     if user_id and num_items:
-        recommended_items = ur.get_recommendations(user_id)[:num_items]
-        return html.Ul([html.Li(item) for item in recommended_items])
+        recommended_items = ur.get_recommendations(user_id)
+        if num_items <= 10:
+            return html.Ul([html.P(f"{i}. {item}") for i, item in enumerate(recommended_items[:num_items], start=1)])
+        elif num_items > 10:
+            return dbc.Row([dbc.Col(html.Ul([html.P(f"{i}. {item}") for i, item in enumerate(recommended_items[:10], start=1)])),
+                            dbc.Col(html.Ul([html.P(f"{i}. {item}") for i, item in enumerate(recommended_items[10:num_items], start=11)]))])
     else:
         return html.H6("please select the required options")
 
@@ -251,8 +255,9 @@ def update_recommendations(n_clicks, user_id, num_items):
 )
 def update_movies_sim(n_clicks, movie_name, similarity_type):
     if movie_name and similarity_type:
-        similar_movies = ms.get_most_similar_items(movie_name, similarity_type = similarity_type, top_n= 10)
-        return html.Ul([html.Li(item) for item in similar_movies])
+        similar_movies = ms.get_most_similar_items(movie_name, similarity_type = similarity_type, top_n= 20)
+        return dbc.Row([dbc.Col(html.Ul([html.P(f"{i}. {item}") for i, item in enumerate(similar_movies[:10], start=1)])),
+                        dbc.Col(html.Ul([html.P(f"{i}. {item}") for i, item in enumerate(similar_movies[10:20], start=11)]))])
     else:
         return html.H6("please select the required options")
 
