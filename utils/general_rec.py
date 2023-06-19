@@ -36,7 +36,7 @@ if __name__ == "__main__":
     gr = GeneralRecommender(rating_threshold=3, count_threshold=50)
 
     # Print the highest rated movies
-    print("Highest rated:", gr.get_highest_rated())
+    print("Highest rated:", gr.get_highest_rated(n=10))
 
     # Print the most rated movies
-    print("Most rated:", gr.get_most_rated())
+    print("Most rated:", gr.get_most_rated(n=10))
