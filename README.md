@@ -1,22 +1,32 @@
 # MovieLens Recommender App
 
+<Br>
+
 ### This Project is part of ITI AI 9 Months Program For Recommender systems Course
+
+<Br>
 
 ## Deployed Version
 Check the live dashboard on [Render](https://movielens-recommender-system.onrender.com/)
+
 ---
+<Br>
 
 ## About The Project
 This is an interactive movie recommender app powered by Deep learning models. It utilizes the MovieLens dataset and provides personalized movie recommendations based on user preferences. The app incorporates a factorization model for user recommendations and various similarity measures to find similar movies.
 
-The factorization model is a collaborative filtering technique commonly employed in recommendation systems. It aims to discover latent features or factors that represent both users and items (movies in this case). By capturing these latent factors, the model can make accurate predictions about user preferences and generate personalized recommendations.
----
+The factorization model is a collaborative filtering technique commonly employed in recommendation systems. It aims to discover latent features or factors that represent both users and items (movies in this case). By capturing these latent factors, the model can make accurate predictions about user preferences and generate personalized 
+recommendations.
 
+---
+<Br>
 
 ## User Recommendations
 
 The app uses a factorization model to generate personalized movie recommendations for each user. By analyzing user behavior and preferences, the model identifies movies that are likely to be of interest to the user. These recommendations are tailored to each individual and aim to provide a personalized movie-watching experience.
+
 ---
+<Br>
 
 ## Movie Similarity Measures
 
@@ -35,35 +45,60 @@ The app offers several movie similarity measures to find similar movies based on
 6. Pearson Correlation: This measure calculates the correlation coefficient between the ratings given by users for two movies. It takes into account the linear relationship between the ratings and provides a measure of similarity based on users' preferences.
 
 7. Mean Squared Difference: This measure calculates the mean squared difference between the ratings given by users for two movies. It quantifies the difference in ratings and provides a measure of dissimilarity.
+
 ---
+<Br>
 
 ## Data Statistics
 
 The app provides various statistics about the MovieLens dataset. These statistics give insights into the distribution of movie ratings, and other relevant information. By exploring these statistics, users can gain a better understanding of the dataset and the underlying trends.
+
 ---
+<Br>
 
 ## Plotly Interface
 
 The app incorporates a user-friendly interface powered by Plotly and Dash. This interface allows users to interact with the machine learning models and obtain personalized movie recommendations. Users can explore different similarity measures, and receive real-time recommendations based on their selections. The interactive nature of the interface enhances the user experience and facilitates easy exploration of movie recommendations.
+
 ---
+<Br>
 
 ## Acknowledgments
 
 The MovieLens Recommender App is built using the MovieLens dataset and incorporates various machine learning techniques. We would like to express our gratitude to the developers of MovieLens and the contributors who made the dataset publicly available.
 
 This project is developed by Osama Fayez, Amgad Hassan, and Israa Okil and is for educational purposes only.
+
 ---
+<Br>
 
 ## APP Preview:
 
+<Br>
+
+# Main Page:
+
 ![](assets/ss1.png)
+
 ---
+<Br>
+
+# Users Recommendation:
 
 ![](assets/ss2.png)
+
 ---
+<Br>
+
+# Movies Similarity:
 
 ![](assets/ss3.png)
+
 ---
+<Br>
+
+# Data Statistics:
 
 ![](assets/ss4.png)
+
 ---
