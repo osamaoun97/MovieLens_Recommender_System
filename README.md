@@ -78,27 +78,27 @@ This project is developed by Osama Fayez, Amgad Hassan, and Israa Okil and is fo
 
 # Main Page:
 
-![](assets/ss1.png)
+![](assets/ss1.PNG)
 
 ---
 <Br>
 
 # Users Recommendation:
 
-![](assets/ss2.png)
+![](assets/ss2.PNG)
 
 ---
 <Br>
 
 # Movies Similarity:
 
-![](assets/ss3.png)
+![](assets/ss3.PNG)
 
 ---
 <Br>
 
 # Data Statistics:
 
-![](assets/ss4.png)
+![](assets/ss4.PNG)
 
 ---
