@@ -18,6 +18,21 @@ This is an interactive movie recommender app powered by Deep learning models. It
 The factorization model is a collaborative filtering technique commonly employed in recommendation systems. It aims to discover latent features or factors that represent both users and items (movies in this case). By capturing these latent factors, the model can make accurate predictions about user preferences and generate personalized 
 recommendations.
 
+
+---
+<Br>
+
+## Plotly Interface
+
+The app incorporates a user-friendly interface powered by Plotly and Dash. This interface allows users to interact with the machine learning models and obtain personalized movie recommendations. Users can explore different similarity measures, and receive real-time recommendations based on their selections. The interactive nature of the interface enhances the user experience and facilitates easy exploration of movie recommendations.
+
+---
+<Br>
+
+## Main Page
+
+When new users access the MovieLens Recommender App, they are greeted with a main page that provides them with initial movie recommendations. These recommendations are designed to cater to users who are new to the app and may not have a well-defined preference profile yet. The main page offers two types of recommendations: the most popular movies and the most rated movies.
+
 ---
 <Br>
 
@@ -52,13 +67,6 @@ The app offers several movie similarity measures to find similar movies based on
 ## Data Statistics
 
 The app provides various statistics about the MovieLens dataset. These statistics give insights into the distribution of movie ratings, and other relevant information. By exploring these statistics, users can gain a better understanding of the dataset and the underlying trends.
-
----
-<Br>
-
-## Plotly Interface
-
-The app incorporates a user-friendly interface powered by Plotly and Dash. This interface allows users to interact with the machine learning models and obtain personalized movie recommendations. Users can explore different similarity measures, and receive real-time recommendations based on their selections. The interactive nature of the interface enhances the user experience and facilitates easy exploration of movie recommendations.
 
 ---
 <Br>
