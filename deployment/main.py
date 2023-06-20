@@ -8,18 +8,21 @@ from utils.user_rec_cashed import UserRecommenderCashed
 from utils.general_rec import GeneralRecommender
 from utils.movies_similarity_saved import MoviesSimilarity
 from utils.graphs import PlotlyGraphs
+from utils.movie_rec_cashed import MovieRecommender
 
 pg = PlotlyGraphs()
 
 ur = UserRecommenderCashed()
 users = list(range(1, 944))
 
+mr = MovieRecommender()
+
 gr = GeneralRecommender(rating_threshold=3, count_threshold=50)
 
 ms = MoviesSimilarity()
 movies = list(MoviesSimilarity().movies["movie_title"])
 
-similarity_measures = ["cosine", "adjusted_cosine", "euclidean", "manhattan", "pearson", "mean_squared_diff"]
+similarity_measures = ["model's vectors embeddings","cosine", "adjusted_cosine", "euclidean", "manhattan", "pearson", "mean_squared_diff"]
 highest_rated = gr.get_highest_rated(n=10)
 most_rated = gr.get_most_rated(n=10)
 
@@ -255,7 +258,10 @@ def update_recommendations(n_clicks, user_id, num_items):
 )
 def update_movies_sim(n_clicks, movie_name, similarity_type):
     if movie_name and similarity_type:
-        similar_movies = ms.get_most_similar_items(movie_name, similarity_type = similarity_type, top_n= 20)
+        if similarity_type == "model's vectors embeddings":
+            similar_movies = mr.get_recommendations(movie_name, n=20)
+        else:
+            similar_movies = ms.get_most_similar_items(movie_name, similarity_type = similarity_type, top_n= 20)
         return dbc.Row([dbc.Col(html.Ul([html.P(f"{i}. {item}") for i, item in enumerate(similar_movies[:10], start=1)])),
                         dbc.Col(html.Ul([html.P(f"{i}. {item}") for i, item in enumerate(similar_movies[10:20], start=11)]))])
     else:
