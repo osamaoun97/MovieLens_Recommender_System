@@ -260,6 +260,3 @@ def update_movies_sim(n_clicks, movie_name, similarity_type):
                         dbc.Col(html.Ul([html.P(f"{i}. {item}") for i, item in enumerate(similar_movies[10:20], start=11)]))])
     else:
         return html.H6("please select the required options")
-
-
-app.run()
