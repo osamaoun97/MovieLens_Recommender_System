@@ -15,11 +15,11 @@ class UserRecommender:
           
         Returns: List of ranked movies recommendation e.g. ['Godfather', 'Godfather2']
         """
-        model_input = {"userId": tf.tile(["42"], [9737]), "movieTitle": self.movies}
+        assert isinstance(user_id, str)
+        model_input = {"userId": tf.tile([user_id], [9737]), "movieTitle": self.movies}
         predicted_ratings = self.model(model_input)
         recommended_items = tf.gather(self.movies, tf.squeeze(tf.argsort(predicted_ratings, axis=0, direction='DESCENDING')))
         return recommended_items.numpy()
-        #return [item.decode('utf-8') for item in recommended_items[1].numpy()[0].tolist()]
     # TO be deleted?
     def get_recommendations_from_csv(self, user_id):
         user_recommendations = self.recommendations_df.loc[user_id].tolist()
