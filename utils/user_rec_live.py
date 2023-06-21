@@ -7,7 +7,7 @@ class UserRecommender:
         """Initializes the recommender by loading the pre-trained model and movie titles."""
         self.model = tf.keras.models.load_model('models/explicit_model')
         self.movies = pd.read_csv('data/movies.csv')['title'].unique()
-        
+        self.ratings = pd.read_csv("data/merged_ratings.csv")
     def get_recommendations(self, user_id):
         """Generate movie recommendations for a given user ID.
         Args:
@@ -15,27 +15,26 @@ class UserRecommender:
           
         Returns: List of ranked movies recommendation e.g. ['Godfather', 'Godfather2']
         """
-        assert isinstance(user_id, str)
-        model_input = {"userId": tf.tile([user_id], [9737]), "movieTitle": self.movies}
+        model_input = {"userId": tf.tile([str(user_id)], [9737]), "movieTitle": self.movies}
         predicted_ratings = self.model(model_input)
         recommended_items = tf.gather(self.movies, tf.squeeze(tf.argsort(predicted_ratings, axis=0, direction='DESCENDING')))
-        return recommended_items.numpy()
-    # TO be deleted?
-    def get_recommendations_from_csv(self, user_id):
-        user_recommendations = self.recommendations_df.loc[user_id].tolist()
-        return user_recommendations
-
+        recommended_items = [item.decode('utf-8') for item in recommended_items.numpy()]
+        rated_items = self.ratings[self.ratings["userId"] == user_id]["movie_title"].tolist()
+        final_recommendations =[x for x in recommended_items if x not in rated_items][:50]
+        return final_recommendations
+    
 if __name__ == '__main__':
     # recommender = UserRecommender()
     # recommendations = []
     # for user_id in range(1, 944):
-    #     user_recommendations = recommender.get_recommendations(str(user_id))
+    #     user_recommendations = recommender.get_recommendations(user_id)
     #     recommendations.append(user_recommendations)
 
     # df = pd.DataFrame(recommendations, index=range(1, 944))
     # df.to_csv('data/user_recommendations.csv', index_label='User ID')
     
-    user_id = 42  # Example user ID
+    user_id = 1  # Example user ID
     recommender = UserRecommender()
-    recommendations = recommender.get_recommendations(user_id)
+    recommendations, rated = recommender.get_recommendations(user_id)
     print("recommendations:", recommendations)
+    print("Rated:", rated)
