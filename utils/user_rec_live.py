@@ -5,7 +5,8 @@ class UserRecommender:
     """A class that provides movie recommendations for a given user."""
     def __init__(self):
         """Initializes the recommender by loading the pre-trained model and movie titles."""
-        self.model = tf.keras.models.load_model('models/explicit_model')
+        #self.model = tf.keras.models.load_model('models/explicit_model')
+        self.model = tf.keras.models.load_model('models/multitask_model')
         self.movies = pd.read_csv('data/movies.csv')['title'].unique()
         self.ratings = pd.read_csv("data/merged_ratings.csv")
     def get_recommendations(self, user_id):
@@ -16,14 +17,15 @@ class UserRecommender:
         Returns: List of ranked movies recommendation e.g. ['Godfather', 'Godfather2']
         """
         model_input = {"userId": tf.tile([str(user_id)], [9737]), "movieTitle": self.movies}
-        predicted_ratings = self.model(model_input)
+        user_embeddings, movie_embeddings, predicted_ratings = self.model(model_input)
         recommended_items = tf.gather(self.movies, tf.squeeze(tf.argsort(predicted_ratings, axis=0, direction='DESCENDING')))
         recommended_items = [item.decode('utf-8') for item in recommended_items.numpy()]
         rated_items = self.ratings[self.ratings["userId"] == user_id]["movie_title"].tolist()
         final_recommendations =[x for x in recommended_items if x not in rated_items][:50]
-        return final_recommendations
+        return final_recommendations, rated_items # Not sure what you wanted to return here?
     
 if __name__ == '__main__':
+    import sys
     # recommender = UserRecommender()
     # recommendations = []
     # for user_id in range(1, 944):
@@ -32,9 +34,17 @@ if __name__ == '__main__':
 
     # df = pd.DataFrame(recommendations, index=range(1, 944))
     # df.to_csv('data/user_recommendations.csv', index_label='User ID')
-    
-    user_id = 1  # Example user ID
     recommender = UserRecommender()
-    recommendations, rated = recommender.get_recommendations(user_id)
-    print("recommendations:", recommendations)
-    print("Rated:", rated)
+    if len(sys.argv) > 1:
+      inputs = sys.argv[1:]
+      for user in inputs:
+        user_id = int(user)  # Example user ID
+        
+        recommendations, rated = recommender.get_recommendations(user_id)
+        print("recommendations:", recommendations)
+        print("Rated:", rated)
+    else:
+      user_id = 1  # Example user ID
+      recommendations, rated = recommender.get_recommendations(user_id)
+      print("recommendations:", recommendations)
+      print("Rated:", rated)
