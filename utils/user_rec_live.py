@@ -7,8 +7,11 @@ class UserRecommender:
         """Initializes the recommender by loading the pre-trained model and movie titles."""
         #self.model = tf.keras.models.load_model('models/explicit_model')
         self.model = tf.keras.models.load_model('models/multitask_model')
-        self.movies = pd.read_csv('data/movies.csv')['title'].unique()
+        #self.movies = pd.read_csv('data/movies.csv')['title'].unique()
         self.ratings = pd.read_csv("data/merged_ratings.csv")
+        self.user_ids = self.model.get_layer('user_model').get_layer('users_lookup').get_vocabulary()
+        self.movie_titles = self.model.get_layer('movie_model').get_layer('movies_lookup').get_vocabulary()
+        self.num_movies = len(self.movie_titles)
     def get_recommendations(self, user_id):
         """Generate movie recommendations for a given user ID.
         Args:
@@ -16,9 +19,10 @@ class UserRecommender:
           
         Returns: List of ranked movies recommendation e.g. ['Godfather', 'Godfather2']
         """
-        model_input = {"userId": tf.tile([str(user_id)], [9737]), "movieTitle": self.movies}
+        assert str(user_id) in self.user_ids    # User not in train set!
+        model_input = {"userId": tf.tile([str(user_id)], [self.num_movies]), "movieTitle": self.movie_titles}
         user_embeddings, movie_embeddings, predicted_ratings = self.model(model_input)
-        recommended_items = tf.gather(self.movies, tf.squeeze(tf.argsort(predicted_ratings, axis=0, direction='DESCENDING')))
+        recommended_items = tf.gather(self.movie_titles, tf.squeeze(tf.argsort(predicted_ratings, axis=0, direction='DESCENDING')))
         recommended_items = [item.decode('utf-8') for item in recommended_items.numpy()]
         rated_items = self.ratings[self.ratings["userId"] == user_id]["movie_title"].tolist()
         final_recommendations =[x for x in recommended_items if x not in rated_items][:50]
