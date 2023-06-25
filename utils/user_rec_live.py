@@ -26,29 +26,34 @@ class UserRecommender:
         recommended_items = [item.decode('utf-8') for item in recommended_items.numpy()]
         rated_items = self.ratings[self.ratings["userId"] == user_id]["movie_title"].tolist()
         final_recommendations =[x for x in recommended_items if x not in rated_items][:50]
-        return final_recommendations, rated_items # Not sure what you wanted to return here?
+        return final_recommendations #, rated_items # Not sure what you wanted to return here?
     
 if __name__ == '__main__':
     import sys
-    # recommender = UserRecommender()
-    # recommendations = []
-    # for user_id in range(1, 944):
-    #     user_recommendations = recommender.get_recommendations(user_id)
-    #     recommendations.append(user_recommendations)
+    import pandas as pd
+    users = pd.read_csv('data/ratings.csv').sort_values('userId')['userId'].unique().tolist()
 
-    # df = pd.DataFrame(recommendations, index=range(1, 944))
-    # df.to_csv('data/user_recommendations.csv', index_label='User ID')
     recommender = UserRecommender()
-    if len(sys.argv) > 1:
-      inputs = sys.argv[1:]
-      for user in inputs:
-        user_id = int(user)  # Example user ID
+    recommendations = []
+    for user_id in users:
+        user_recommendations = recommender.get_recommendations(user_id)
+        recommendations.append(user_recommendations[:50])
+
+    df = pd.DataFrame(recommendations, index=users)
+    #print(df.head(5))
+    
+    df.to_csv('data/user_recommendations.csv', index_label='User ID')
+    #recommender = UserRecommender()
+    # if len(sys.argv) > 1:
+    #   inputs = sys.argv[1:]
+    #   for user in inputs:
+    #     user_id = int(user)  # Example user ID
         
-        recommendations, rated = recommender.get_recommendations(user_id)
-        print("recommendations:", recommendations)
-        print("Rated:", rated)
-    else:
-      user_id = 1  # Example user ID
-      recommendations, rated = recommender.get_recommendations(user_id)
-      print("recommendations:", recommendations)
-      print("Rated:", rated)
+    #     recommendations, rated = recommender.get_recommendations(user_id)
+    #     print("recommendations:", recommendations)
+    #     print("Rated:", rated)
+    # else:
+    #   user_id = 1  # Example user ID
+    #   recommendations, rated = recommender.get_recommendations(user_id)
+    #   print("recommendations:", recommendations)
+    #   print("Rated:", rated)
