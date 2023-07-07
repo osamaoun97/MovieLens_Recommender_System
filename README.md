@@ -15,8 +15,7 @@ Check the live dashboard on [Render](https://movielens-recommender-system.onrend
 ## About The Project
 This is an interactive movie recommender app powered by Deep learning models. It utilizes the MovieLens dataset and provides personalized movie recommendations based on user preferences. The app incorporates a factorization model for user recommendations and various similarity measures to find similar movies.
 
-The factorization model is a collaborative filtering technique commonly employed in recommendation systems. It aims to discover latent features or factors that represent both users and items (movies in this case). By capturing these latent factors, the model can make accurate predictions about user preferences and generate personalized 
-recommendations.
+The factorization model is a collaborative filtering technique commonly employed in recommendation systems. It aims to discover latent features or factors that represent both users and items (movies in this case). By capturing these latent factors, the model can make accurate predictions about user preferences and generate personalized recommendations.
 
 
 ---
