@@ -2,7 +2,7 @@
 
 <Br>
 
-### This Project is part of ITI AI 9 Months Program For Recommender systems Course
+### This Project is part of ITI AI 9 Months Program For Recommender systems Course.
 
 <Br>
 
